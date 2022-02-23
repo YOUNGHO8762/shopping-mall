@@ -47,7 +47,10 @@ const cartSlice = createSlice({
       );
 
       state.totalQuantity -= item!.quantity!;
-      state.totalPrice -= +(item!.quantity! * item!.price!).toFixed(2);
+      state.totalPrice = +(
+        state.totalPrice -
+        item!.quantity! * item!.price!
+      ).toFixed(2);
     },
     increaseQuantity: (state, action: PayloadAction<number>) => {
       const item = state.items.find((item) => item.id === action.payload);
